@@ -56,6 +56,7 @@ ROOT_URLCONF = "server.urls"
 
 TEMPLATES = [
     {
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [],
         "APP_DIRS": True,
         "OPTIONS": {
@@ -123,5 +124,5 @@ STATIC_URL = "/static/"
 
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:8080/",
+    "http://localhost:8080",
 ]
