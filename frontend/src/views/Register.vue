@@ -88,7 +88,6 @@ export default {
         await this.$store.dispatch("registerRequest", payload);
         this.$router.push({ name: "login" });
       } catch (error) {
-        console.log(error.response);
         this.error.status = true;
         this.error.message =
           error.response.data.username[0] ||

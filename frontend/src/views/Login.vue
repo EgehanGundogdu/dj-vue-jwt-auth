@@ -69,20 +69,6 @@ export default {
     };
   },
   methods: {
-    // async login() {
-    //   let payload = { ...this.credentials };
-
-    //   try {
-    //     await this.$store.dispatch("loginRequest", payload);
-    //     this.$router.push({ name: "profile" });
-    //   } catch (err) {
-    //     this.error.status = true;
-    //     this.error.message =
-    //       err.response.data ||
-    //       err.response.detail ||
-    //       "Unable to login with given credentials";
-    //   }
-    // },
     login() {
       let payload = { ...this.credentials };
       this.$store
@@ -94,9 +80,11 @@ export default {
           console.log(error);
 
           (this.error.status = true),
-            (this.error.message = "Unable to login with given credentials");
-          // error.response.data ||
-          // error.response.detail ||
+            (this.error.message =
+              error.response.data ||
+              error.response.error ||
+              error.response.detail ||
+              "Unable to login with given credentials.");
         });
     },
   },

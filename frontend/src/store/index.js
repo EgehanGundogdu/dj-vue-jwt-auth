@@ -13,12 +13,6 @@ const initialUser = () => {
 
 export default new Vuex.Store({
   state: {
-    // user: {
-    //   loggedIn: false,
-    //   username: "",
-    //   role: "",
-    //   accessToken: localStorage.getItem("accessToken") || null,
-    // },
     user: initialUser(),
   },
   getters: {

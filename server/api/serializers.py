@@ -2,7 +2,6 @@ from rest_framework import serializers
 import random
 
 from django.contrib.auth import get_user_model
-from django.contrib.auth.models import Group
 
 User = get_user_model()
 
@@ -25,5 +24,9 @@ class UserSerializer(serializers.ModelSerializer):
         return random.choice(groups)
 
     def create(self, validated_data):
+
         validated_data.pop("password2")
         return User.objects.create_user(**validated_data)
+
+    def save(self, **kwargs):
+        return super().save(**kwargs)

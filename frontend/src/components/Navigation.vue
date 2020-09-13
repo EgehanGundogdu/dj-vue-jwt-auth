@@ -1,7 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <span class="navbar-brand mb-0 h1">dj-vue-jwt</span>
-    <!-- <router-link class="navbar-brand" :to="{ name: 'profile' }">Todo+</router-link> -->
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
         <template v-if="!isLoggedIn">
