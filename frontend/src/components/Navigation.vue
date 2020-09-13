@@ -4,7 +4,7 @@
     <!-- <router-link class="navbar-brand" :to="{ name: 'profile' }">Todo+</router-link> -->
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
-        <template>
+        <template v-if="!isLoggedIn">
           <li class="nav-item">
             <router-link
               active-class="active"
@@ -25,8 +25,8 @@
           </li></template
         >
 
-        <li class="nav-item">
-          <a class="nav-link">Logout</a>
+        <li v-else class="nav-item">
+          <a @click="logout()" class="nav-link">Logout</a>
         </li>
       </ul>
     </div>
@@ -34,7 +34,20 @@
 >
 
 <script>
-export default {};
+import { mapGetters, mapActions } from "vuex";
+export default {
+  computed: {
+    ...mapGetters(["isLoggedIn"]),
+  },
+  methods: {
+    ...mapActions(["logoutRequest"]),
+    logout() {
+      this.logoutRequest().then(() => {
+        this.$router.push({ name: "login" });
+      });
+    },
+  },
+};
 </script>
 
 <style></style>

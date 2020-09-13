@@ -206,3 +206,5 @@ dmypy.json
 # pytype static type analyzer
 
 # End of https://www.toptal.com/developers/gitignore/api/django,python
+
+.vscode/

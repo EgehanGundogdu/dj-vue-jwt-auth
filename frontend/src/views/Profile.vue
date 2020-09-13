@@ -9,10 +9,8 @@
       <div class="col">
         <div class="jumbotron jumbotron">
           <div class="container">
-            <h1 class="display-5">Hi username!</h1>
-            <p class="lead mt-5">
-              Your system group >
-            </p>
+            <h1 class="display-5">Hi {{ userData.username }}!</h1>
+            <p class="lead mt-5">Your system group > {{ userData.role }}</p>
           </div>
         </div>
       </div>
@@ -22,9 +20,19 @@
 
 <script>
 import Navigation from "@/components/Navigation";
+import { mapActions, mapGetters } from "vuex";
 export default {
   components: {
     Navigation,
+  },
+  methods: {
+    ...mapActions(["getUserData"]),
+  },
+  created() {
+    this.getUserData().catch(() => {});
+  },
+  computed: {
+    ...mapGetters(["userData"]),
   },
 };
 </script>

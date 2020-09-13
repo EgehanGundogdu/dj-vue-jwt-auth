@@ -14,7 +14,7 @@
     </div>
     <div class="row mt-5">
       <div class="col d-flex justify-content-center">
-        <form @submit.prevent>
+        <form @submit.prevent="register()">
           <div class="form-group">
             <label for="username">Username</label>
             <input
@@ -34,6 +34,7 @@
               id="password"
               placeholder="Password"
               v-model="credentials.password"
+              required
             />
           </div>
           <div class="form-group">
@@ -44,12 +45,13 @@
               id="password2"
               placeholder="Password repeat"
               v-model="credentials.password2"
+              required
             />
           </div>
           <button
-            @click="register()"
             type="submit"
             class="btn btn-primary btn-block"
+            :disabled="!passwordEquality"
           >
             Register
           </button>
@@ -84,13 +86,21 @@ export default {
       let payload = { ...this.credentials };
       try {
         await this.$store.dispatch("registerRequest", payload);
+        this.$router.push({ name: "login" });
       } catch (error) {
+        console.log(error.response);
         this.error.status = true;
         this.error.message =
-          error.response.data ||
+          error.response.data.username[0] ||
           error.response.detail ||
           "Something went wrong!";
       }
+    },
+  },
+  computed: {
+    passwordEquality() {
+      if (this.credentials.password === this.credentials.password2) return true;
+      else return false;
     },
   },
 };
